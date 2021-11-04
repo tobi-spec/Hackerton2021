@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {getTop10Countries} from "./service/AxiosService";
+import ChartGallery from "./components/ChartGallery";
 
 function App() {
   const [top10, setTop10] = useState([])
@@ -10,7 +11,7 @@ function App() {
 
   console.log(top10)
 
-  return (<div>hello</div>);
+  return <ChartGallery chartValue={top10}/>;
 }
 
 export default App;
