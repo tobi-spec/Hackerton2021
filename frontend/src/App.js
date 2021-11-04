@@ -6,7 +6,7 @@ function App() {
 
   useEffect(() => {
     getTop10Countries()
-  })
+  }, [])
 
   return (<div>Hello World</div>);
 }
