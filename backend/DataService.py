@@ -24,7 +24,7 @@ dtypes = {"node_id": int,
           }
 
 
-def get_country_occurency():
+def get_top10_countries():
     df = pd.read_csv(path, dtype=dtypes)
     df_sorted = df["countries"].value_counts().iloc[0:10]
     return df_sorted.to_json(orient="split")

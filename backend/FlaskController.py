@@ -13,4 +13,4 @@ def get_connection():
 
 @app.route("/country")
 def get_country_values():
-    return DataService.get_country_occurency()
+    return DataService.get_top10_countries()
