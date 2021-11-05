@@ -94,7 +94,7 @@ def get_top10_countries_panama():
     return get_top10_countries(panama_entity_path, panama_entity_dtypes)
 
 def get_top10_countries_bahamas():
-    return get_top10_countries()
+    return get_top10_countries(bahamas_entity_path, bahamas_entity_dtypes)
 
 def get_top10_countries_offshore():
     return get_top10_countries(offshore_entity_path, offshore_entity_dtypes)
