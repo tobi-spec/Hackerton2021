@@ -22,27 +22,22 @@ dtypes = {"node_id": int,
 }
 
 
-paradise_intermediary_dtypes = {"node_id":int ,
-                       "name": str,
-                       "country_codes": str,
-                       "countries": str,
-                       "sourceID": str,
-                       "valid_until": str,
-                       "note": str
-}
-
-
-def get_top10_people_countries(source):
+def get_top10_people_countries(source, interm):
     attribute = "countries"
     if source == "offshore":
-        return get_top10_people_attributes(offshore_officer_path, dtypes, attribute)
+        return get_top10_people_attributes(offshore_officer_path, offshore_intermediary_path, dtypes, attribute, interm)
     if source == "panama":
-        return get_top10_people_attributes(panama_officer_path, dtypes, attribute)
+        return get_top10_people_attributes(panama_officer_path, panama_intermediary_path, dtypes, attribute, interm)
     if source == "paradise":
-        return get_top10_people_attributes(paradise_officer_path, dtypes, attribute)
+        return get_top10_people_attributes(paradise_officer_path, paradise_intermediary_path, dtypes, attribute, interm)
 
 
-def get_top10_people_attributes(path, dtypes, attribute):
-    df = pd.read_csv(path, dtype=dtypes)
-    df_sorted = df[attribute].value_counts().iloc[0:10]
-    return df_sorted.to_json(orient="split")
+def get_top10_people_attributes(officer_path, intermediary_path, dtypes, attribute, interm):
+    officers = pd.read_csv(officer_path, dtype=dtypes)
+    intermediary = pd.read_csv(intermediary_path, dtype=dtypes)
+    if interm == "y":
+        people = officers.append(intermediary)
+    else:
+        people = officers
+    people_sorted = people[attribute].value_counts().iloc[0:10]
+    return people_sorted.to_json(orient="split")
