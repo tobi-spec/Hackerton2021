@@ -1,7 +1,7 @@
 import { Bar } from 'react-chartjs-2';
 
 
-export default function BarChart({chartValue}) {
+export default function BarChart({chartValue, name}) {
 
     const data = {
         labels: chartValue.index,
@@ -33,7 +33,7 @@ export default function BarChart({chartValue}) {
 
     const VerticalBar = () => (
         <div>
-            <h1 className='title'>Top 10 Off Shore Countries according to paradise papers</h1>
+            <h1 className='title'>Top 10 Off Shore Destination of {name}</h1>
             <Bar data={data}/>
         </div>
     );
