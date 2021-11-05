@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 
 import ChartGallery from "./components/ChartGallery";
 import {
+  getBillionaires,
   getTop10CountryOffshoreCTL,
   getTop10CountryOffshorePT,
   getTop10CountryPanama,
@@ -26,6 +27,9 @@ function App() {
   const [top10PeopleParadise, setTop10PeopleParadise] = useState([])
 
   const [name, setName] = useState({ name: '' })
+  const [found, setFound] = useState()
+
+  const [billionaire, setBillionaire] = useState()
 
   useEffect(() => {
     getTop10CountryOffshoreCTL().then(data => setTop10CountryOffshoreCTL(data))
@@ -37,7 +41,11 @@ function App() {
     getTop10PeopleOffshorePT().then(data => setTop10PeopleOffshorePT(data))
     getTop10PeoplePanama().then(data => setTop10PeoplePanama(data))
     getTop10PeopleParadise().then(data => setTop10PeopleParadise(data))
+
+    getBillionaires().then(data => setBillionaire(data))
   }, [])
+
+  console.log(billionaire)
 
   const nameHandler = event =>
       setName({
@@ -47,20 +55,22 @@ function App() {
   const nameSubmitHandler = event => {
     event.preventDefault()
     searchName(name)
-        .then(response => console.log(response))
+        .then(response => setFound(response.data))
         .finally(() => setName({ name: '' }))
   }
 
-  return <div>
+
+  return <Wrapper>
     <Header title={"Dirty Offshore Money Secrets"}/>
-    <BoxWrapper onSubmit={nameSubmitHandler}>
+    <form onSubmit={nameSubmitHandler}>
       <p>Find the dirty secrets of your friends!</p>
       <input
           type="text"
           value={name.name}
           onChange={nameHandler}/>
       <button>search</button>
-    </BoxWrapper>
+      <p>{found>0 ? "This Name was found!":""}</p>
+    </form>
     <ChartGallery
       paradiseCountries={top10CountryParadise}
       panamaCountries={top10CountryPanama}
@@ -72,10 +82,14 @@ function App() {
       offShorePeopleCTL={top10PeopleOffshoreCTL}
       offShorePeoplePT={top10PeopleOffshorePT}
   />
-  </div>;
+  </Wrapper>;
 }
 
 export default App;
 
-const BoxWrapper = styled.form`
+const Wrapper = styled.div`
+  
+  form{
+    margin-left: 300px;
+  }
 `

@@ -10,6 +10,8 @@ const top10PeopleOffshorePT = "/people?source=offshore&service_provider=Portcull
 const top10PeoplePanama = "/people?source=panama"
 const top10PeopleParadise = "/people?source=paradise"
 
+const billionaire ="/billionaire"
+
 // requests for off shore countries
 export const getTop10CountryOffshoreCTL = () => {
     return axios.get(top10CountryOffshoreCTL).then(response => response.data)
@@ -45,6 +47,9 @@ export const getTop10PeoplePanama = () => {
 }
 
 export const searchName = (name) => {
-    console.log(name)
     return axios.get("/search?name=" + name.name)
+}
+
+export const getBillionaires = () => {
+    return axios.get(billionaire).then(response => response.data)
 }
