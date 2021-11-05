@@ -1,8 +1,5 @@
 import pandas as pd
-import json
 
-# Data is copied into data folder manually
-path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.entity.csv"
 
 dtypes = {"node_id": int,
           "name": str,
@@ -24,7 +21,7 @@ dtypes = {"node_id": int,
           }
 
 
-def get_top10_countries():
-    df = pd.read_csv(path, dtype=dtypes)
+def get_top10_countries(csv_path):
+    df = pd.read_csv(csv_path, dtype=dtypes)
     df_sorted = df["countries"].value_counts().iloc[0:10]
     return df_sorted.to_json(orient="split")

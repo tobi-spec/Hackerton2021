@@ -1,7 +1,11 @@
 import BarChart from "./BarChart";
 
-export default function ChartGallery({chartValue}) {
+export default function ChartGallery({
+                                         ValuesOffShore,
+                                         ValuesPanama,
+                                         ValuesParadise
+                                     })
+{
     return <section>
-        <BarChart chartValue={chartValue}/>
     </section>
 }
