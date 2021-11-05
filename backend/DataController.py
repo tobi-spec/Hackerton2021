@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import request
 
-import DataService
+import CountryService
 import PeopleService
 
 app = Flask(__name__)
@@ -27,25 +27,25 @@ def get_country_values():
         source = args.get("source")
 
         if source == "bahamas":
-            return DataService.get_top10_bahamas(attribute)
+            return CountryService.get_top10_bahamas(attribute)
 
         if source == "offshore":
 
             if "service_provider" in args:
                 service_provider = args.get("service_provider")
-                return DataService.get_top10_offshore_by_service_provider(service_provider, attribute)
+                return CountryService.get_top10_offshore_by_service_provider(service_provider, attribute)
 
             else:
-                return DataService.get_top10_offshore(attribute)
+                return CountryService.get_top10_offshore(attribute)
 
         if source == "panama":
-            return DataService.get_top10_panama(attribute)
+            return CountryService.get_top10_panama(attribute)
 
         if source == "paradise":
-            return DataService.get_top10_paradise(attribute)
+            return CountryService.get_top10_paradise(attribute)
 
         else:
-            return DataService.get_top10_countries_default()
+            return CountryService.get_top10_countries_default()
 
 
 @app.route("/people")
