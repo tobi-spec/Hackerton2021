@@ -97,10 +97,10 @@ def get_top10_countries_bahamas():
     return get_top10_countries()
 
 def get_top10_countries_offshore():
-    return get_top10_countries(panama_entity_path, panama_entity_dtypes)
+    return get_top10_countries(offshore_entity_path, offshore_entity_dtypes)
 
 def get_top10_countries_offshore_by_service_provider(offshore_entity_path, offshore_entity_dtypes, service_provider):
-    return get_top10_countries(panama_entity_path, panama_entity_dtypes)
+    return get_top10_countries(offshore_entity_path, offshore_entity_dtypes)
 
 def get_top10_countries(path, dtypes):
     df = pd.read_csv(path, dtype=dtypes)
