@@ -12,7 +12,7 @@ def get_connection():
     return 'Hello, World! This server works fine!'
 
 
-@app.route("/data")
+@app.route("/country")
 def get_country_values():
 
     args = request.args
@@ -48,7 +48,7 @@ def get_country_values():
             return DataService.get_top10_countries_default()
 
 
-@app.route("/officer")
+@app.route("/people")
 def get_officer_values():
     args = request.args
     source = "paradise"
