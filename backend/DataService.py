@@ -50,24 +50,24 @@ def get_top10_countries_default():
     return get_top10_attributes(paradise_entity_path, dtypes, "countries")
 
 
-def get_top10_countries_paradise():
-    return get_top10_attributes(paradise_entity_path, dtypes, "countries")
+def get_top10_paradise(attribute):
+    return get_top10_attributes(paradise_entity_path, dtypes, attribute)
 
 
-def get_top10_countries_panama():
-    return get_top10_attributes(panama_entity_path, dtypes, "countries")
+def get_top10_panama(attribute):
+    return get_top10_attributes(panama_entity_path, dtypes, attribute)
 
 
-def get_top10_countries_bahamas():
-    return get_top10_attributes(bahamas_entity_path, bahamas_entity_dtypes, "countries")
+def get_top10_bahamas(attribute):
+    return get_top10_attributes(bahamas_entity_path, bahamas_entity_dtypes, attribute)
 
 
-def get_top10_countries_offshore():
-    return get_top10_attributes(offshore_entity_path, dtypes, "countries")
+def get_top10_offshore(attribute):
+    return get_top10_attributes(offshore_entity_path, dtypes, attribute)
 
 
-def get_top10_countries_offshore_by_service_provider(service_provider):
-    return get_top10_countries_by_service_provider(offshore_entity_path, dtypes, service_provider)
+def get_top10_offshore_by_service_provider(service_provider, attribute):
+    return get_top10_by_service_provider(offshore_entity_path, dtypes, service_provider, attribute)
 
 
 def get_top10_attributes(path, dtypes, attribute):
@@ -76,9 +76,9 @@ def get_top10_attributes(path, dtypes, attribute):
     return df_sorted.to_json(orient="split")
 
 
-def get_top10_countries_by_service_provider(path, dtypes, service_provider):
+def get_top10_by_service_provider(path, dtypes, service_provider, attribute):
     df = pd.read_csv(path, dtype=dtypes)
     is_service_provider = df['service_provider']==service_provider
     df_filtered = df[is_service_provider]
-    df_sorted = df_filtered["countries"].value_counts().iloc[0:10]
+    df_sorted = df_filtered[attribute].value_counts().iloc[0:10]
     return df_sorted.to_json(orient="split")
