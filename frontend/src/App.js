@@ -1,31 +1,52 @@
 import {useEffect, useState} from "react";
-import {getTop10OffshoreCTL, getTop10OffshorePT, getTop10Panama, getTop10Paradise} from "./service/AxiosService";
+
 import ChartGallery from "./components/ChartGallery";
+import {
+  getTop10CountryOffshoreCTL,
+  getTop10CountryOffshorePT,
+  getTop10CountryPanama,
+  getTop10CountryParadise,
+  getTop10PeopleOffshoreCTL,
+  getTop10PeopleOffshorePT,
+  getTop10PeoplePanama,
+  getTop10PeopleParadise
+} from "./service/AxiosService";
 
 function App() {
-  const [top10OffshoreCTL, setTop10OffshoreCTL] = useState([])
-  const [top10OffshorePT, setTop10OffshorePT] = useState([])
-  const [top10Panama, setTop10Panama] = useState([])
-  const [top10Paradise, setTop10Paradise] = useState([])
+  const [top10CountryOffshoreCTL, setTop10CountryOffshoreCTL] = useState([])
+  const [top10CountryOffshorePT, setTop10CountryOffshorePT] = useState([])
+  const [top10CountryPanama, setTop10CountryPanama] = useState([])
+  const [top10CountryParadise, setTop10CountryParadise] = useState([])
 
+  const [top10PeopleOffshoreCTL, setTop10PeopleOffshoreCTL] = useState([])
+  const [top10PeopleOffshorePT, setTop10PeopleOffshorePT] = useState([])
+  const [top10PeoplePanama, setTop10PeoplePanama] = useState([])
+  const [top10PeopleParadise, setTop10PeopleParadise] = useState([])
 
   useEffect(() => {
-    getTop10OffshoreCTL().then(data => setTop10OffshoreCTL(data))
-    getTop10OffshorePT().then(data => setTop10OffshorePT(data))
-    getTop10Panama().then(data => setTop10Panama(data))
-    getTop10Paradise().then(data => setTop10Paradise(data))
+    getTop10CountryOffshoreCTL().then(data => setTop10CountryOffshoreCTL(data))
+    getTop10CountryOffshorePT().then(data => setTop10CountryOffshorePT(data))
+    getTop10CountryPanama().then(data => setTop10CountryPanama(data))
+    getTop10CountryParadise().then(data => setTop10CountryParadise(data))
+
+    getTop10PeopleOffshoreCTL().then(data => setTop10PeopleOffshoreCTL(data))
+    getTop10PeopleOffshorePT().then(data => setTop10PeopleOffshorePT(data))
+    getTop10PeoplePanama().then(data => setTop10PeoplePanama(data))
+    getTop10PeopleParadise().then(data => setTop10PeopleParadise(data))
   }, [])
 
-  console.log(top10Paradise)
-  console.log(top10Panama)
-  console.log(top10OffshoreCTL)
-  console.log(top10OffshorePT)
+  console.log(top10PeopleOffshoreCTL)
 
   return <ChartGallery
-      paradiseValues={top10Paradise}
-      panamaValues={top10Panama}
-      offShoreValuesCTL={top10OffshoreCTL}
-      offShoreValuesPT={top10OffshorePT}
+      paradiseCountries={top10CountryParadise}
+      panamaCountries={top10CountryPanama}
+      offShoreCountriesCTL={top10CountryOffshoreCTL}
+      offShoreCountriesPT={top10CountryOffshorePT}
+
+      paradisePeople={top10PeopleParadise}
+      panamaPeople={top10PeoplePanama}
+      offShorePeopleCTL={top10PeopleOffshoreCTL}
+      offShorePeoplePT={top10PeopleOffshorePT}
   />;
 }
 
