@@ -1,10 +1,5 @@
 import pandas as pd
-
-# Data is copied into data folder manually
-paradise_entity_path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.entity.csv"
-panama_entity_path = "./data/csv_panama_papers.2018-02-14/panama_papers.nodes.entity.csv"
-bahamas_entity_path = "./data/csv_bahamas_leaks.2017-12-19/bahamas_leaks.nodes.entity.csv"
-offshore_entity_path = "./data/csv_offshore_leaks.2018-02-14/offshore_leaks.nodes.entity.csv"
+import Paths as Paths
 
 dtypes = {"node_id": int,
           "name": str,
@@ -47,27 +42,27 @@ bahamas_entity_dtypes = {"labels(n)": str,
 
 
 def get_top10_countries_default():
-    return get_top10_attributes(paradise_entity_path, dtypes, "countries")
+    return get_top10_attributes(Paths.paradise_entity_path, dtypes, "countries")
 
 
 def get_top10_paradise(attribute):
-    return get_top10_attributes(paradise_entity_path, dtypes, attribute)
+    return get_top10_attributes(Paths.paradise_entity_path, dtypes, attribute)
 
 
 def get_top10_panama(attribute):
-    return get_top10_attributes(panama_entity_path, dtypes, attribute)
+    return get_top10_attributes(Paths.panama_entity_path, dtypes, attribute)
 
 
 def get_top10_bahamas(attribute):
-    return get_top10_attributes(bahamas_entity_path, bahamas_entity_dtypes, attribute)
+    return get_top10_attributes(Paths.bahamas_entity_path, bahamas_entity_dtypes, attribute)
 
 
 def get_top10_offshore(attribute):
-    return get_top10_attributes(offshore_entity_path, dtypes, attribute)
+    return get_top10_attributes(Paths.offshore_entity_path, dtypes, attribute)
 
 
 def get_top10_offshore_by_service_provider(service_provider, attribute):
-    return get_top10_by_service_provider(offshore_entity_path, dtypes, service_provider, attribute)
+    return get_top10_by_service_provider(Paths.offshore_entity_path, dtypes, service_provider, attribute)
 
 
 def get_top10_attributes(path, dtypes, attribute):

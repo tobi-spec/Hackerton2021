@@ -52,8 +52,12 @@ def get_country_values():
 def get_officer_values():
     args = request.args
     source = "paradise"
+    interm = "y"
 
     if "source" in args:
         source = args.get("source")
 
-    return PeopleService.get_top10_people_countries(source)
+    if "interm" in args:
+        interm = args.get("interm")
+
+    return PeopleService.get_top10_people_countries(source, interm)
