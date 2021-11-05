@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import request
 
 import DataService
 
@@ -12,4 +13,27 @@ def get_connection():
 
 @app.route("/country")
 def get_country_values():
-    return DataService.get_top10_countries()
+
+    args = request.args
+
+    if "source" in args:
+        source = args.get("source")
+
+        if source == "bahamas":
+            return DataService.get_top10_countries_bahamas()
+
+        if source == "offshore":
+            return DataService.get_top10_countries_offshore()
+
+        if source == "panama":
+            return DataService.get_top10_countries_panama()
+
+        if source == "paradise":
+            return DataService.get_top10_countries_paradise()
+
+        else:
+            return DataService.get_top10_countries_default()
+
+    else:
+        return DataService.get_top10_countries_default()
+
