@@ -1,3 +1,5 @@
+import re
+
 import pandas as pd
 import Paths as Paths
 
@@ -25,8 +27,9 @@ def search_for_value(value):
 
     for i in list:
         df = pd.read_csv(i, dtype=dtypes)
-        found = df['name']==value
-        df_filtered = df[found]
-        result = result + len(df_filtered.index)
+
+        for entry in df['name']:
+            if str(entry).lower() == value.lower():
+                result = result + 1
 
     return str(result)
