@@ -20,10 +20,10 @@ code {
     width:30%;
 }
 
-#search-sub {
-    width:30%;
-}
-
 #search {
     text-align: center;
+}
+
+#pic {
+    width: 150px;
 }

@@ -14,6 +14,7 @@ import {
 } from "./service/AxiosService";
 import styled from "styled-components";
 import Header from "./components/Header";
+import BillionaireGallery from "./components/BillionaireGallery";
 
 function App() {
   const [top10CountryOffshoreCTL, setTop10CountryOffshoreCTL] = useState([])
@@ -29,7 +30,7 @@ function App() {
   const [name, setName] = useState({ name: '' })
   const [found, setFound] = useState()
 
-  const [billionaire, setBillionaire] = useState()
+  const [billionaire, setBillionaire] = useState([])
 
   useEffect(() => {
     getTop10CountryOffshoreCTL().then(data => setTop10CountryOffshoreCTL(data))
@@ -42,7 +43,7 @@ function App() {
     getTop10PeoplePanama().then(data => setTop10PeoplePanama(data))
     getTop10PeopleParadise().then(data => setTop10PeopleParadise(data))
 
-    getBillionaires().then(data => setBillionaire(data))
+    getBillionaires().then(data => setBillionaire(Object.values(data)))
   }, [])
 
   console.log(billionaire)
@@ -62,7 +63,6 @@ function App() {
 
   return <Wrapper>
     <Header title={"Dirty Offshore Money Secrets"}/>
-    <div id="search-sub"></div>
     <div id="search">
         <form onSubmit={nameSubmitHandler}>
             <p>Find the dirty secrets of your friends!</p>
@@ -74,7 +74,9 @@ function App() {
             <p>{found>0 ? "This Name was found!":""}</p>
         </form>
     </div>
-    <div id="search-sub"></div>
+    <div id="search">
+      <BillionaireGallery billionare={billionaire}/>
+    </div>
     <ChartGallery
       paradiseCountries={top10CountryParadise}
       panamaCountries={top10CountryPanama}
