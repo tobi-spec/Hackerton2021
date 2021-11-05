@@ -11,6 +11,8 @@ import {
   getTop10PeoplePanama,
   getTop10PeopleParadise
 } from "./service/AxiosService";
+import styled from "styled-components";
+import Header from "./components/Header";
 
 function App() {
   const [top10CountryOffshoreCTL, setTop10CountryOffshoreCTL] = useState([])
@@ -37,7 +39,9 @@ function App() {
 
   console.log(top10PeopleOffshoreCTL)
 
-  return <ChartGallery
+  return <Wrapper>
+    <Header title={"OffShoreShower"}/>
+    <ChartGallery
       paradiseCountries={top10CountryParadise}
       panamaCountries={top10CountryPanama}
       offShoreCountriesCTL={top10CountryOffshoreCTL}
@@ -47,7 +51,11 @@ function App() {
       panamaPeople={top10PeoplePanama}
       offShorePeopleCTL={top10PeopleOffshoreCTL}
       offShorePeoplePT={top10PeopleOffshorePT}
-  />;
+  />
+  </Wrapper>;
 }
 
 export default App;
+
+const Wrapper = styled.section`
+`
