@@ -33,7 +33,7 @@ export default function BarChart({chartValue, title ,name}) {
 
 
     const VerticalBar = () => (
-        <div>
+        <div id="bc">
             <h1 className='title'>{title} {name}</h1>
             <Bar data={data}/>
         </div>

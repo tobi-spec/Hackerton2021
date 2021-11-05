@@ -62,15 +62,19 @@ function App() {
 
   return <Wrapper>
     <Header title={"Dirty Offshore Money Secrets"}/>
-    <form onSubmit={nameSubmitHandler}>
-      <p>Find the dirty secrets of your friends!</p>
-      <input
-          type="text"
-          value={name.name}
-          onChange={nameHandler}/>
-      <button>search</button>
-      <p>{found>0 ? "This Name was found!":""}</p>
-    </form>
+    <div id="search-sub"></div>
+    <div id="search">
+        <form onSubmit={nameSubmitHandler}>
+            <p>Find the dirty secrets of your friends!</p>
+            <input
+                type="text"
+                value={name.name}
+                onChange={nameHandler}/>
+            <button>search</button>
+            <p>{found>0 ? "This Name was found!":""}</p>
+        </form>
+    </div>
+    <div id="search-sub"></div>
     <ChartGallery
       paradiseCountries={top10CountryParadise}
       panamaCountries={top10CountryPanama}
@@ -88,8 +92,4 @@ function App() {
 export default App;
 
 const Wrapper = styled.div`
-  
-  form{
-    margin-left: 300px;
-  }
 `
