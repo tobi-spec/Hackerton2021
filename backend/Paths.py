@@ -1,0 +1,13 @@
+# Data is copied into data folder manually
+paradise_entity_path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.entity.csv"
+panama_entity_path = "./data/csv_panama_papers.2018-02-14/panama_papers.nodes.entity.csv"
+bahamas_entity_path = "./data/csv_bahamas_leaks.2017-12-19/bahamas_leaks.nodes.entity.csv"
+offshore_entity_path = "./data/csv_offshore_leaks.2018-02-14/offshore_leaks.nodes.entity.csv"
+paradise_officer_path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.officer.csv"
+panama_officer_path = "./data/csv_panama_papers.2018-02-14/panama_papers.nodes.officer.csv"
+bahamas_officer_path = "./data/csv_bahamas_leaks.2017-12-19/bahamas_leaks.nodes.officer.csv"
+offshore_officer_path = "./data/csv_offshore_leaks.2018-02-14/offshore_leaks.nodes.officer.csv"
+paradise_intermediary_path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.intermediary.csv"
+panama_intermediary_path = "./data/csv_panama_papers.2018-02-14/panama_papers.nodes.intermediary.csv"
+bahamas_intermediary_path = "./data/csv_bahamas_leaks.2017-12-19/bahamas_leaks.nodes.intermediary.csv"
+offshore_intermediary_path = "./data/csv_offshore_leaks.2018-02-14/offshore_leaks.nodes.intermediary.csv"
