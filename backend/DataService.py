@@ -2,7 +2,7 @@ import pandas as pd
 import json
 
 # Data is copied into data folder manually
-path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.entity.csv"
+paradise_entity_path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.entity.csv"
 
 paradise_entity_dtypes = {"node_id": int,
           "name": str,
