@@ -47,32 +47,32 @@ bahamas_entity_dtypes = {"labels(n)": str,
 
 
 def get_top10_countries_default():
-    return get_top10_countries(paradise_entity_path, dtypes)
+    return get_top10_attributes(paradise_entity_path, dtypes, "countries")
 
 
 def get_top10_countries_paradise():
-    return get_top10_countries(paradise_entity_path, dtypes)
+    return get_top10_attributes(paradise_entity_path, dtypes, "countries")
 
 
 def get_top10_countries_panama():
-    return get_top10_countries(panama_entity_path, dtypes)
+    return get_top10_attributes(panama_entity_path, dtypes, "countries")
 
 
 def get_top10_countries_bahamas():
-    return get_top10_countries(bahamas_entity_path, bahamas_entity_dtypes)
+    return get_top10_attributes(bahamas_entity_path, bahamas_entity_dtypes, "countries")
 
 
 def get_top10_countries_offshore():
-    return get_top10_countries(offshore_entity_path, dtypes)
+    return get_top10_attributes(offshore_entity_path, dtypes, "countries")
 
 
 def get_top10_countries_offshore_by_service_provider(service_provider):
     return get_top10_countries_by_service_provider(offshore_entity_path, dtypes, service_provider)
 
 
-def get_top10_countries(path, dtypes):
+def get_top10_attributes(path, dtypes, attribute):
     df = pd.read_csv(path, dtype=dtypes)
-    df_sorted = df["countries"].value_counts().iloc[0:10]
+    df_sorted = df[attribute].value_counts().iloc[0:10]
     return df_sorted.to_json(orient="split")
 
 
