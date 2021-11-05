@@ -9,7 +9,7 @@ import {
   getTop10PeopleOffshoreCTL,
   getTop10PeopleOffshorePT,
   getTop10PeoplePanama,
-  getTop10PeopleParadise
+  getTop10PeopleParadise, searchName
 } from "./service/AxiosService";
 import styled from "styled-components";
 import Header from "./components/Header";
@@ -25,6 +25,8 @@ function App() {
   const [top10PeoplePanama, setTop10PeoplePanama] = useState([])
   const [top10PeopleParadise, setTop10PeopleParadise] = useState([])
 
+  const [name, setName] = useState({ name: '' })
+
   useEffect(() => {
     getTop10CountryOffshoreCTL().then(data => setTop10CountryOffshoreCTL(data))
     getTop10CountryOffshorePT().then(data => setTop10CountryOffshorePT(data))
@@ -37,10 +39,28 @@ function App() {
     getTop10PeopleParadise().then(data => setTop10PeopleParadise(data))
   }, [])
 
-  console.log(top10PeopleOffshoreCTL)
+  const nameHandler = event =>
+      setName({
+        name: event.target.value,
+      })
 
-  return <Wrapper>
+  const nameSubmitHandler = event => {
+    event.preventDefault()
+    searchName(name)
+        .then(response => console.log(response))
+        .finally(() => setName({ name: '' }))
+  }
+
+  return <div>
     <Header title={"Dirty Offshore Money Secrets"}/>
+    <BoxWrapper onSubmit={nameSubmitHandler}>
+      <p>Find the dirty secrets of your friends!</p>
+      <input
+          type="text"
+          value={name.name}
+          onChange={nameHandler}/>
+      <button>search</button>
+    </BoxWrapper>
     <ChartGallery
       paradiseCountries={top10CountryParadise}
       panamaCountries={top10CountryPanama}
@@ -52,10 +72,10 @@ function App() {
       offShorePeopleCTL={top10PeopleOffshoreCTL}
       offShorePeoplePT={top10PeopleOffshorePT}
   />
-  </Wrapper>;
+  </div>;
 }
 
 export default App;
 
-const Wrapper = styled.section`
+const BoxWrapper = styled.form`
 `

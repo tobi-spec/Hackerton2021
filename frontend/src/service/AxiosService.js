@@ -43,3 +43,7 @@ export const getTop10PeopleParadise = () => {
 export const getTop10PeoplePanama = () => {
     return axios.get(top10PeoplePanama).then(response => response.data)
 }
+
+export const searchName = (name) => {
+    return axios.post(name)
+}
