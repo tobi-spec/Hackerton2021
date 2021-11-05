@@ -3,6 +3,7 @@ from flask import request
 
 import CountryService
 import PeopleService
+import SearchService
 
 app = Flask(__name__)
 
@@ -61,3 +62,8 @@ def get_officer_values():
         interm = args.get("interm")
 
     return PeopleService.get_top10_people_countries(source, interm)
+
+@app.route("/search", methods=['POST'])
+def search_for_value():
+    data = request.form
+    return SearchService.search_for_value(data.name)
