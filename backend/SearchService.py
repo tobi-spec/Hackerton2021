@@ -15,5 +15,6 @@ dtypes = {"node_id": int,
 def search_for_value(value):
     df = pd.read_csv(Paths.paradise_officer_path, dtype=dtypes)
     found = df['name']==value
+    df_filtered = df[found]
 
-    return found
+    return str(len(df_filtered.index))

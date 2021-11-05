@@ -63,7 +63,12 @@ def get_officer_values():
 
     return PeopleService.get_top10_people_countries(source, interm)
 
-@app.route("/search", methods=['POST'])
+@app.route("/search")
 def search_for_value():
-    data = request.form
-    return SearchService.search_for_value(data.name)
+    args = request.args
+    name = ""
+
+    if "name" in args:
+        name = args.get("name")
+
+    return SearchService.search_for_value(name)
