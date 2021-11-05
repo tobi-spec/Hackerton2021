@@ -2,6 +2,7 @@ from flask import Flask
 from flask import request
 
 import DataService
+import PeopleService
 
 app = Flask(__name__)
 
@@ -46,3 +47,13 @@ def get_country_values():
         else:
             return DataService.get_top10_countries_default()
 
+
+@app.route("/officer")
+def get_officer_values():
+    args = request.args
+    source = "paradise"
+
+    if "source" in args:
+        source = args.get("source")
+
+    return PeopleService.get_top10_people_countries(source)
