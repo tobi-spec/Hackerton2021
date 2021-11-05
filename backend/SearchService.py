@@ -13,6 +13,15 @@ dtypes = {"node_id": int,
                   "note": str
 }
 
+billionaire_dtypes = {"Name": str,
+                      "NetWorth": str,
+                      "Country": str,
+                      "Source": str,
+                      "Rank": str,
+                      "Age": str,
+                      "Industry": str
+}
+
 
 list = [Paths.paradise_officer_path,
         Paths.paradise_intermediary_path,
@@ -33,3 +42,28 @@ def search_for_value(value):
                 result = result + 1
 
     return str(result)
+
+
+def search_for_billionaire():
+    df = pd.read_csv(Paths.forbes_billionare_path, dtype=billionaire_dtypes)
+    df = df.head(30)
+
+    result = dict()
+    index = 0
+    position = 0
+
+    for name in df['Name']:
+        position = position + 1
+        found = search_for_value(name)
+
+        if int(found)>0:
+            print(name)
+            elem = {"name": name, "found": found, "position": position}
+            result[index] = elem
+            index = index + 1
+
+    print("---DONE---")
+
+    return result
+
+

@@ -72,3 +72,7 @@ def search_for_value():
         name = args.get("name")
 
     return SearchService.search_for_value(name)
+
+@app.route("/billionaire")
+def search_for_billionaire():
+    return SearchService.search_for_billionaire()

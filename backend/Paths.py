@@ -11,3 +11,5 @@ paradise_intermediary_path = "./data/csv_paradise_papers.2018-02-14/paradise_pap
 panama_intermediary_path = "./data/csv_panama_papers.2018-02-14/panama_papers.nodes.intermediary.csv"
 bahamas_intermediary_path = "./data/csv_bahamas_leaks.2017-12-19/bahamas_leaks.nodes.intermediary.csv"
 offshore_intermediary_path = "./data/csv_offshore_leaks.2018-02-14/offshore_leaks.nodes.intermediary.csv"
+forbes_billionare_path = "./data/forbes_billionaire/Billionaire.csv"
+forbes_billionare_found_path = "./data/forbes_billionaire/found.csv"
