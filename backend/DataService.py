@@ -66,8 +66,8 @@ def get_top10_countries_offshore():
     return get_top10_countries(offshore_entity_path, dtypes)
 
 
-def get_top10_countries_offshore_by_service_provider(offshore_entity_path, offshore_entity_dtypes, service_provider):
-    return get_top10_countries(offshore_entity_path, offshore_entity_dtypes)
+def get_top10_countries_offshore_by_service_provider(service_provider):
+    return get_top10_countries_by_service_provider(offshore_entity_path, dtypes, service_provider)
 
 
 def get_top10_countries(path, dtypes):
@@ -78,5 +78,7 @@ def get_top10_countries(path, dtypes):
 
 def get_top10_countries_by_service_provider(path, dtypes, service_provider):
     df = pd.read_csv(path, dtype=dtypes)
-    df_sorted = df["countries"].service_provider.eq(service_provider).value_counts().iloc[0:10]
+    is_service_provider = df['service_provider']==service_provider
+    df_filtered = df[is_service_provider]
+    df_sorted = df_filtered["countries"].value_counts().iloc[0:10]
     return df_sorted.to_json(orient="split")

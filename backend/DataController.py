@@ -23,7 +23,13 @@ def get_country_values():
             return DataService.get_top10_countries_bahamas()
 
         if source == "offshore":
-            return DataService.get_top10_countries_offshore()
+
+            if "service_provider" in args:
+                service_provider = args.get("service_provider")
+                return DataService.get_top10_countries_offshore_by_service_provider(service_provider)
+
+            else:
+                return DataService.get_top10_countries_offshore()
 
         if source == "panama":
             return DataService.get_top10_countries_panama()
