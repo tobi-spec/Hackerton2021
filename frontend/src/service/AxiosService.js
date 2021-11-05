@@ -45,5 +45,6 @@ export const getTop10PeoplePanama = () => {
 }
 
 export const searchName = (name) => {
-    return axios.post(name)
+    console.log(name)
+    return axios.get("/search?name=" + name.name)
 }
