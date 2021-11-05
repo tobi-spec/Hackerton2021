@@ -41,5 +41,6 @@ export default function ChartGallery({
 const Wrapper = styled.div`
 `
 const InnerWrapper = styled.div`
-  display: flex
+  display: flex;
+  margin: 10px 20px 20px 10px;
 `

@@ -40,7 +40,7 @@ function App() {
   console.log(top10PeopleOffshoreCTL)
 
   return <Wrapper>
-    <Header title={"OffShoreShower"}/>
+    <Header title={"Offshore Money Secrets"}/>
     <ChartGallery
       paradiseCountries={top10CountryParadise}
       panamaCountries={top10CountryPanama}
