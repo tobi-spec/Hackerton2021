@@ -12,9 +12,21 @@ dtypes = {"node_id": int,
 }
 
 
-def search_for_value(value):
-    df = pd.read_csv(Paths.paradise_officer_path, dtype=dtypes)
-    found = df['name']==value
-    df_filtered = df[found]
+list = [Paths.paradise_officer_path,
+        Paths.paradise_intermediary_path,
+        Paths.panama_officer_path,
+        Paths.panama_intermediary_path,
+        Paths.offshore_officer_path,
+        Paths.offshore_intermediary_path]
 
-    return str(len(df_filtered.index))
+
+def search_for_value(value):
+    result = 0
+
+    for i in list:
+        df = pd.read_csv(i, dtype=dtypes)
+        found = df['name']==value
+        df_filtered = df[found]
+        result = result + len(df_filtered.index)
+
+    return str(result)
