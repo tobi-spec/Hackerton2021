@@ -29,7 +29,7 @@ def search_for_value(value):
         df = pd.read_csv(i, dtype=dtypes)
 
         for entry in df['name']:
-            if str(entry).lower() == value.lower():
+            if value.lower() in str(entry).lower():
                 result = result + 1
 
     return str(result)
