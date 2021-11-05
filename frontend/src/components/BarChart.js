@@ -1,4 +1,5 @@
 import { Bar } from 'react-chartjs-2';
+import styled from "styled-components";
 
 
 export default function BarChart({chartValue, name}) {
@@ -32,12 +33,17 @@ export default function BarChart({chartValue, name}) {
 
 
     const VerticalBar = () => (
-        <div>
+        <Wrapper>
             <h1 className='title'>Top 10 Off Shore Destination of {name}</h1>
             <Bar data={data}/>
-        </div>
+        </Wrapper>
     );
 
     return VerticalBar()
 }
+
+const Wrapper = styled.div`
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+`
 
