@@ -85,7 +85,7 @@ offshore_entity_dtypes = { "node_id":int,
 }
 
 def get_top10_countries_default():
-    return get_top10_countries_paradise(paradise_entity_path, paradise_entity_dtypes)
+    return get_top10_countries(paradise_entity_path, paradise_entity_dtypes)
 
 def get_top10_countries_paradise():
     return get_top10_countries(paradise_entity_path, paradise_entity_dtypes)
