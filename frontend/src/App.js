@@ -8,6 +8,14 @@ function App() {
   const [top10Panama, setTop10Panama] = useState([])
   const [top10Paradise, setTop10Paradise] = useState([])
 
+  const [countries, setCountries] = useState([])
+
+  useEffect(() => fetch('https://unpkg.com/world-atlas/countries-50m.json')
+      .then(response => setCountries(response.json()))
+      .then(data => {
+    const countries = ChartGeo.topojson.feature(data, data.objects.countries).features;, [])
+
+  console.log(countries)
 
   useEffect(() => {
     getTop10OffshoreCTL().then(data => setTop10OffshoreCTL(data))
@@ -15,11 +23,6 @@ function App() {
     getTop10Panama().then(data => setTop10Panama(data))
     getTop10Paradise().then(data => setTop10Paradise(data))
   }, [])
-
-  console.log(top10Paradise)
-  console.log(top10Panama)
-  console.log(top10OffshoreCTL)
-  console.log(top10OffshorePT)
 
   return <ChartGallery
       paradiseValues={top10Paradise}
