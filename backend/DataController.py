@@ -75,4 +75,10 @@ def search_for_value():
 
 @app.route("/billionaire")
 def search_for_billionaire():
-    return SearchService.search_for_billionaire()
+    args = request.args
+    reload = "n"
+
+    if "reload" in args:
+        reload = args.get("reload")
+
+    return SearchService.search_for_billionaire(reload)

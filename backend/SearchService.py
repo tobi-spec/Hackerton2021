@@ -44,26 +44,57 @@ def search_for_value(value):
     return str(result)
 
 
-def search_for_billionaire():
-    df = pd.read_csv(Paths.forbes_billionare_path, dtype=billionaire_dtypes)
-    df = df.head(30)
+def search_for_billionaire(reload):
 
-    result = dict()
-    index = 0
-    position = 0
+    if reload=="y":
 
-    for name in df['Name']:
-        position = position + 1
-        found = search_for_value(name)
+        df = pd.read_csv(Paths.forbes_billionare_path, dtype=billionaire_dtypes)
+        df = df.head(30)
 
-        if int(found)>0:
-            print(name)
-            elem = {"name": name, "found": found, "position": position}
-            result[index] = elem
-            index = index + 1
+        result = dict()
+        index = 0
+        position = 0
 
-    print("---DONE---")
+        for name in df['Name']:
+            position = position + 1
+            found = search_for_value(name)
 
-    return result
+            if int(found)>0:
+                print(name)
+                elem = {"name": name, "found": found, "position": position}
+                result[index] = elem
+                index = index + 1
 
+        print("---DONE---")
+
+        return result
+
+    else:
+        return {
+            "0": {
+                "found": "1",
+                "name": "Bill Gates",
+                "position": 4
+                },
+            "1": {
+                "found": "1",
+                "name": "Ma Huateng",
+                "position": 15
+            },
+            "2": {
+                "found": "3",
+                "name": "MacKenzie Scott",
+                "position": 22
+            },
+            "3": {
+                "found": "1",
+                "name": "Daniel Gilbert",
+                "position": 23
+            },
+            "4": {
+                "found": "7",
+                "name": "Jack Ma",
+                "position": 26
+            }
+}
 
