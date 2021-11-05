@@ -1,7 +1,6 @@
 from flask import Flask
 
 import DataService
-from DataService import *
 
 app = Flask(__name__)
 
