@@ -1,8 +1,10 @@
 import pandas as pd
-import json
 
 # Data is copied into data folder manually
-path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.entity.csv"
+paradise_entity_path = "./data/csv_paradise_papers.2018-02-14/paradise_papers.nodes.entity.csv"
+panama_entity_path = "./data/csv_panama_papers.2018-02-14/panama_papers.nodes.entity.csv"
+bahamas_entity_path = "./data/csv_bahamas_leaks.2017-12-19/bahamas_leaks.nodes.entity.csv"
+offshore_entity_path = "./data/csv_offshore_leaks.2018-02-14/offshore_leaks.nodes.entity.csv"
 
 dtypes = {"node_id": int,
           "name": str,
@@ -23,8 +25,60 @@ dtypes = {"node_id": int,
           "note": str
           }
 
+bahamas_entity_dtypes = {"labels(n)": str,
+                         "valid_until": str,
+                         "country_codes": str,
+                         "countries": str,
+                         "node_id": str,
+                         "sourceID": str,
+                         "address": str,
+                         "name": str,
+                         "jurisdiction_description": str,
+                         "service_provider": str,
+                         "jurisdiction": str,
+                         "closed_date": str,
+                         "incorporation_date": str,
+                         "ibcRUC": str,
+                         "type": str,
+                         "status": str,
+                         "company_type": str,
+                         "note": str
+                         }
 
-def get_top10_countries():
+
+def get_top10_countries_default():
+    return get_top10_attributes(paradise_entity_path, dtypes, "countries")
+
+
+def get_top10_paradise(attribute):
+    return get_top10_attributes(paradise_entity_path, dtypes, attribute)
+
+
+def get_top10_panama(attribute):
+    return get_top10_attributes(panama_entity_path, dtypes, attribute)
+
+
+def get_top10_bahamas(attribute):
+    return get_top10_attributes(bahamas_entity_path, bahamas_entity_dtypes, attribute)
+
+
+def get_top10_offshore(attribute):
+    return get_top10_attributes(offshore_entity_path, dtypes, attribute)
+
+
+def get_top10_offshore_by_service_provider(service_provider, attribute):
+    return get_top10_by_service_provider(offshore_entity_path, dtypes, service_provider, attribute)
+
+
+def get_top10_attributes(path, dtypes, attribute):
     df = pd.read_csv(path, dtype=dtypes)
-    df_sorted = df["countries"].value_counts().iloc[0:10]
+    df_sorted = df[attribute].value_counts().iloc[0:10]
+    return df_sorted.to_json(orient="split")
+
+
+def get_top10_by_service_provider(path, dtypes, service_provider, attribute):
+    df = pd.read_csv(path, dtype=dtypes)
+    is_service_provider = df['service_provider']==service_provider
+    df_filtered = df[is_service_provider]
+    df_sorted = df_filtered[attribute].value_counts().iloc[0:10]
     return df_sorted.to_json(orient="split")
